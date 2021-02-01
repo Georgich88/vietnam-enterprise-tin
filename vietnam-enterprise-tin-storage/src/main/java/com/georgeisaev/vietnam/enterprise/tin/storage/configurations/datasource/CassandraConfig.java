@@ -1,4 +1,4 @@
-package com.georgeisaev.vietnam.enterprise.tin.storage.configurations;
+package com.georgeisaev.vietnam.enterprise.tin.storage.configurations.datasource;
 
 import com.georgeisaev.vietnam.enterprise.tin.storage.domain.enterprise.InformationSource;
 import org.springframework.context.annotation.Bean;
