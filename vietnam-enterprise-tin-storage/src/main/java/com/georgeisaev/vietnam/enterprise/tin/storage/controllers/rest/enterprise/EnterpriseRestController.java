@@ -3,6 +3,7 @@ package com.georgeisaev.vietnam.enterprise.tin.storage.controllers.rest.enterpri
 import com.georgeisaev.vietnam.enterprise.tin.storage.domain.enterprise.Enterprise;
 import com.georgeisaev.vietnam.enterprise.tin.storage.services.enterprise.EnterpriseService;
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@Log
+@Slf4j
 @RestController
 @RequestMapping("enterprises")
 public class EnterpriseRestController {

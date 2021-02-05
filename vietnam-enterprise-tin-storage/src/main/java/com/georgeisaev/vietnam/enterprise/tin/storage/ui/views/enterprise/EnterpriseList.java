@@ -12,23 +12,24 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.vaadin.klaudeta.PaginatedGrid;
 
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Enterprises | Vietnam TIN")
 public class EnterpriseList extends VerticalLayout {
 
 	private final EnterpriseForm form;
-	final Grid<Enterprise> grid = new Grid<>(Enterprise.class);
-	final TextField filterText = new TextField();
+	private final PaginatedGrid<Enterprise> grid = new PaginatedGrid<>(Enterprise.class);
+	private final TextField filterText = new TextField();
 
-	private final EnterpriseService enterpriseService;
+	private final transient EnterpriseService enterpriseService;
 
 	public EnterpriseList(EnterpriseService enterpriseService) {
+
 		this.enterpriseService = enterpriseService;
 		addClassName("list-view");
 		setSizeFull();
 		configureGrid();
-
 
 		form = new EnterpriseForm();
 		form.addListener(EnterpriseForm.SaveEvent.class, this::saveEnterprise);
@@ -57,16 +58,18 @@ public class EnterpriseList extends VerticalLayout {
 	}
 
 	private HorizontalLayout getToolBar() {
-		filterText.setPlaceholder("Filter by name...");
+
+		filterText.setPlaceholder("Filter by TIN...");
 		filterText.setClearButtonVisible(true);
 		filterText.setValueChangeMode(ValueChangeMode.LAZY);
 		filterText.addValueChangeListener(e -> updateList());
 
 		Button addEnterpriseButton = new Button("Add enterprise", click -> addEnterprise());
-
 		HorizontalLayout toolbar = new HorizontalLayout(filterText, addEnterpriseButton);
 		toolbar.addClassName("toolbar");
+
 		return toolbar;
+
 	}
 
 	private void addEnterprise() {
