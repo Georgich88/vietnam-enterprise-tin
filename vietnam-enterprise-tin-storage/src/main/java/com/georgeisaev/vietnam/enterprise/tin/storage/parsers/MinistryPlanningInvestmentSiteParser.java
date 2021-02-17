@@ -21,10 +21,17 @@ import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
-public class MinistryPlanningInvestmentSiteParser {
+public class MinistryPlanningInvestmentSiteParser implements Parser {
 
 	private final String searchRequest;
 
+	/**
+	 * Parses an enterprise using {@code searchRequest}.
+	 *
+	 * @return the parsed enterprise
+	 * @throws IOException
+	 */
+	@Override
 	public List<Enterprise> parse() throws IOException {
 
 		try (final WebClient webClient = new WebClient()) {
