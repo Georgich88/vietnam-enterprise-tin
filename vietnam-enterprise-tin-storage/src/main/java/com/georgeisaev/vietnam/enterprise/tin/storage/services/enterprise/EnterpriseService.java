@@ -27,6 +27,7 @@ public class EnterpriseService {
 		return enterpriseRepository.findById(id);
 	}
 
+	// TODO: add filter
 	public List<Enterprise> findAll(String value) {
 		return enterpriseRepository.findAll();
 	}

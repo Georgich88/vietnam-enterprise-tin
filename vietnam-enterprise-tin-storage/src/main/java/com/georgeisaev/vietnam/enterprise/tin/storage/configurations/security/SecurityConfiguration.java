@@ -44,16 +44,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				.requestCache().requestCache(new CustomRequestCache())
-				.and().authorizeRequests()
+		//@formatter:off
+		http.
+			csrf()
+				.disable()
+			.requestCache()
+				.requestCache(new CustomRequestCache())
+			.and()
+				.authorizeRequests()
 				.requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
-				.anyRequest().authenticated()
-				.and().formLogin()
-				.loginPage(LOGIN_URL).permitAll()
+			.anyRequest()
+				.authenticated()
+			.and()
+				.formLogin()
+			.loginPage(LOGIN_URL)
+				.permitAll()
 				.loginProcessingUrl(LOGIN_PROCESSING_URL)
 				.failureUrl(LOGIN_FAILURE_URL)
-				.and().logout().logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+			.and()
+				.logout()
+				.logoutSuccessUrl(LOGOUT_SUCCESS_URL)
+			.and()
+				.headers()
+					.frameOptions()
+					.sameOrigin();
+		//@formatter:on
 	}
 
 	/**

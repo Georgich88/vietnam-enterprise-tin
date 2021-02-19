@@ -2,9 +2,9 @@ package com.georgeisaev.vietnam.enterprise.tin.storage.ui.views.enterprise;
 
 import com.georgeisaev.vietnam.enterprise.tin.storage.domain.enterprise.Enterprise;
 import com.georgeisaev.vietnam.enterprise.tin.storage.services.enterprise.EnterpriseService;
+import com.georgeisaev.vietnam.enterprise.tin.storage.services.parsing.ParserService;
 import com.georgeisaev.vietnam.enterprise.tin.storage.ui.MainLayout;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -12,7 +12,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import lombok.SneakyThrows;
 import org.vaadin.klaudeta.PaginatedGrid;
+
+import java.net.ConnectException;
 
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Enterprises | Vietnam TIN")
@@ -23,10 +26,13 @@ public class EnterpriseList extends VerticalLayout {
 	private final TextField filterText = new TextField();
 
 	private final transient EnterpriseService enterpriseService;
+	private final transient ParserService parserService;
 
-	public EnterpriseList(EnterpriseService enterpriseService) {
+	public EnterpriseList(EnterpriseService enterpriseService, ParserService parserService) {
 
 		this.enterpriseService = enterpriseService;
+		this.parserService = parserService;
+
 		addClassName("list-view");
 		setSizeFull();
 		configureGrid();
@@ -36,7 +42,9 @@ public class EnterpriseList extends VerticalLayout {
 		form.addListener(EnterpriseForm.DeleteEvent.class, this::deleteEnterprise);
 		form.addListener(EnterpriseForm.CloseEvent.class, e -> closeEditor());
 
-		Div content = new Div(grid, form);
+		Div enterprisesGrid = new Div(grid);
+
+		HorizontalLayout content = new HorizontalLayout(enterprisesGrid, form);
 		content.addClassName("content");
 		content.setSizeFull();
 
@@ -65,7 +73,8 @@ public class EnterpriseList extends VerticalLayout {
 		filterText.addValueChangeListener(e -> updateList());
 
 		Button addEnterpriseButton = new Button("Add enterprise", click -> addEnterprise());
-		HorizontalLayout toolbar = new HorizontalLayout(filterText, addEnterpriseButton);
+		Button loadEnterpriseButton = new Button("Load enterprise", click -> loadEnterprise());
+		HorizontalLayout toolbar = new HorizontalLayout(filterText, addEnterpriseButton, loadEnterpriseButton);
 		toolbar.addClassName("toolbar");
 
 		return toolbar;
@@ -75,6 +84,12 @@ public class EnterpriseList extends VerticalLayout {
 	private void addEnterprise() {
 		grid.asSingleSelect().clear();
 		editEnterprise(new Enterprise());
+	}
+
+	@SneakyThrows
+	private void loadEnterprise()  {
+		parserService.process(filterText.getValue());
+		updateList();
 	}
 
 	private void configureGrid() {
