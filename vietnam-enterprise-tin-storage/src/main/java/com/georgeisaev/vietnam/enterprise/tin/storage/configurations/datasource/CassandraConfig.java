@@ -1,4 +1,4 @@
-package com.georgeisaev.vietnam.enterprise.tin.storage.configurations;
+package com.georgeisaev.vietnam.enterprise.tin.storage.configurations.datasource;
 
 import com.georgeisaev.vietnam.enterprise.tin.storage.domain.enterprise.InformationSource;
 import org.springframework.context.annotation.Bean;
@@ -13,9 +13,11 @@ import java.util.List;
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
 	@Override
-	public String getKeyspaceName() {
+	protected String getKeyspaceName() {
 		return "vietnam_enterprise_tin";
 	}
+
+	// region Converters
 
 	@Bean
 	CassandraCustomConversions getConversions() {
@@ -42,5 +44,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 			return InformationSource.valueOf(source);
 		}
 	}
+
+	// endregion
 
 }

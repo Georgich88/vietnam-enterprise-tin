@@ -27,4 +27,22 @@ public class EnterpriseService {
 		return enterpriseRepository.findById(id);
 	}
 
+	// TODO: add filter
+	public List<Enterprise> findAll(String value) {
+		return enterpriseRepository.findAll();
+	}
+
+	public void delete(Enterprise enterprise) {
+		enterpriseRepository.delete(enterprise);
+	}
+
+	@SuppressWarnings("UnusedReturnValue")
+	public Enterprise save(Enterprise enterprise) {
+		return enterpriseRepository.save(enterprise);
+	}
+
+	public long count() {
+		return enterpriseRepository.count();
+	}
+
 }
