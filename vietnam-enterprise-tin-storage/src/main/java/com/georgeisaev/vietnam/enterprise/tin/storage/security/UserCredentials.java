@@ -6,6 +6,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+/**
+ * Provides core user credentials information.
+ *
+ * @author Georgy Isaev
+ */
 public class UserCredentials implements UserDetails {
 
 	private final User user;

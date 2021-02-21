@@ -13,9 +13,11 @@ import java.util.List;
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
 	@Override
-	public String getKeyspaceName() {
+	protected String getKeyspaceName() {
 		return "vietnam_enterprise_tin";
 	}
+
+	// region Converters
 
 	@Bean
 	CassandraCustomConversions getConversions() {
@@ -42,5 +44,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 			return InformationSource.valueOf(source);
 		}
 	}
+
+	// endregion
 
 }

@@ -15,8 +15,6 @@ import com.vaadin.flow.router.Route;
 import lombok.SneakyThrows;
 import org.vaadin.klaudeta.PaginatedGrid;
 
-import java.net.ConnectException;
-
 @Route(value = "", layout = MainLayout.class)
 @PageTitle("Enterprises | Vietnam TIN")
 public class EnterpriseList extends VerticalLayout {
@@ -87,7 +85,7 @@ public class EnterpriseList extends VerticalLayout {
 	}
 
 	@SneakyThrows
-	private void loadEnterprise()  {
+	private void loadEnterprise() {
 		parserService.process(filterText.getValue());
 		updateList();
 	}

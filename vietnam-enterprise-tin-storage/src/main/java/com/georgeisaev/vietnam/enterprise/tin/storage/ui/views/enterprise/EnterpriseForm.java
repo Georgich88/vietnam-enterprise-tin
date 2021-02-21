@@ -25,15 +25,15 @@ public class EnterpriseForm extends FormLayout {
 
 	// Fields
 
-	final TextField tin = new TextField("TIN");
-	final TextField name = new TextField("Name");
-	final TextField foreignName = new TextField("Foreign name");
-	final TextField shortName = new TextField("Short name");
-	final TextField type = new TextField("Type");
-	final DatePicker foundationDate = new DatePicker("Foundation date");
-	final TextField representative = new TextField("Representative");
-	final TextField legalAddress = new TextField("Address");
-	final ComboBox<String> status = new ComboBox<>("Status");
+	private final TextField tin = new TextField("TIN");
+	private final TextField name = new TextField("Name");
+	private final TextField foreignName = new TextField("Foreign name");
+	private final TextField shortName = new TextField("Short name");
+	private final TextField type = new TextField("Type");
+	private final DatePicker foundationDate = new DatePicker("Foundation date");
+	private final TextField representative = new TextField("Representative");
+	private final TextField legalAddress = new TextField("Address");
+	private final ComboBox<String> status = new ComboBox<>("Status");
 
 	// Buttons
 
