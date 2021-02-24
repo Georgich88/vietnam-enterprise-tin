@@ -29,7 +29,7 @@ import java.util.Optional;
  */
 @Slf4j
 @AllArgsConstructor
-public class MinistryPlanningInvestmentSiteParser implements Parser {
+public class MinistryPlanningInvestmentSiteParser implements EnterpriseParser {
 
 	private static final String URL_PATH_DEFAULT_PAGE = "https://dichvuthongtin.dkkd.gov.vn/inf/default.aspx";
 	private static final String MSG_ERR_PARSING = "Error occurred during the parsing";

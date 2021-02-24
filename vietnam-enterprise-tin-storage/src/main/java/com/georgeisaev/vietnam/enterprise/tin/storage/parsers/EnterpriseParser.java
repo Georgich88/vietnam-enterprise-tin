@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Georgy Isaev
  */
-public interface Parser {
+public interface EnterpriseParser {
 
 	List<Enterprise> parse() throws Exception;
 
