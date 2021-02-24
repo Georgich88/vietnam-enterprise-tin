@@ -13,15 +13,30 @@ public class EnterpriseService {
 
 	private final EnterpriseRepository enterpriseRepository;
 
+	// region Constructors
+
 	@Autowired
 	public EnterpriseService(EnterpriseRepository enterpriseRepository) {
 		this.enterpriseRepository = enterpriseRepository;
+	}
+
+	// endregion
+
+	// region Creation and updating
+
+	@SuppressWarnings("UnusedReturnValue")
+	public Enterprise save(Enterprise enterprise) {
+		return enterpriseRepository.save(enterprise);
 	}
 
 	public List<Enterprise> saveAll(List<Enterprise> enterprises) {
 		enterprises.forEach(Enterprise::prePersist);
 		return enterpriseRepository.saveAll(enterprises);
 	}
+
+	// endregion
+
+	// region Reading
 
 	public Optional<Enterprise> findById(String id) {
 		return enterpriseRepository.findById(id);
@@ -32,14 +47,15 @@ public class EnterpriseService {
 		return enterpriseRepository.findAll();
 	}
 
+	// endregion
+
+	// region Deletion
+
 	public void delete(Enterprise enterprise) {
 		enterpriseRepository.delete(enterprise);
 	}
 
-	@SuppressWarnings("UnusedReturnValue")
-	public Enterprise save(Enterprise enterprise) {
-		return enterpriseRepository.save(enterprise);
-	}
+	// endregion
 
 	public long count() {
 		return enterpriseRepository.count();
