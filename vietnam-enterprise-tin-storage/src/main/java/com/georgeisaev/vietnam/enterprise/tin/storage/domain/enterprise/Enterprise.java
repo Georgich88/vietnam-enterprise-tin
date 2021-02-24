@@ -12,6 +12,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * Contains enterprise details.
+ *
+ * @author Georgy Isaev
+ */
 @Data
 @NoArgsConstructor
 @Table("ent_enterprises")
