@@ -17,8 +17,16 @@
     <properties>
         <java.version>11</java.version>
         <vaadin.version>14.4.6</vaadin.version>
-        <htmlunit.version>2.47.1</htmlunit.version>
     </properties>
+    <modules>
+        <module>vietnam-enterprise-tin-storage-dao</module>
+        <module>vietnam-enterprise-tin-storage-domain</module>
+        <module>vietnam-enterprise-tin-storage-parsers</module>
+        <module>vietnam-enterprise-tin-storage-security</module>
+        <module>vietnam-enterprise-tin-storage-web</module>
+        <module>vietnam-enterprise-tin-storage-services</module>
+        <module>vietnam-enterprise-tin-storage-frontend</module>
+    </modules>
     <repositories>
         <repository>
             <id>vaadin-addons</id>
@@ -26,11 +34,7 @@
         </repository>
     </repositories>
     <dependencies>
-        <dependency>
-            <groupId>com.georgeisaev</groupId>
-            <artifactId>vietnam-enterprise-tin-storage-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        <!-- Springboot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-cassandra</artifactId>
@@ -71,27 +75,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!-- parsing -->
-        <dependency>
-            <groupId>net.sourceforge.htmlunit</groupId>
-            <artifactId>htmlunit</artifactId>
-            <version>${htmlunit.version}</version>
-        </dependency>
         <!-- development-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-        <!-- frontend-->
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.vaadin.klaudeta</groupId>
-            <artifactId>grid-pagination</artifactId>
-            <version>2.0.10</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -105,69 +93,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
-    <profiles>
-        <profile>
-            <id>production</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.vaadin</groupId>
-                        <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>${vaadin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>frontend</id>
-                                <phase>compile</phase>
-                                <goals>
-                                    <goal>prepare-frontend</goal>
-                                    <goal>build-frontend</goal>
-                                </goals>
-                                <configuration>
-                                    <productionMode>true</productionMode>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+
+
 
 </project>
