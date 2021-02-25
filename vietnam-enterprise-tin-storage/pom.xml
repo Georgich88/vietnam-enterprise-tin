@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>vietnam-enterprise-tin-storage</name>
     <description>Vietnam enterprise TIN storage microservice</description>
+    <packaging>pom</packaging>
     <properties>
         <java.version>11</java.version>
         <vaadin.version>14.4.6</vaadin.version>
@@ -25,6 +26,11 @@
         </repository>
     </repositories>
     <dependencies>
+        <dependency>
+            <groupId>com.georgeisaev</groupId>
+            <artifactId>vietnam-enterprise-tin-storage-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-cassandra</artifactId>
